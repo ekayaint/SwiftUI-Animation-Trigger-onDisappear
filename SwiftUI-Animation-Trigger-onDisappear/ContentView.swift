@@ -33,9 +33,28 @@ struct ContentView: View {
                 .padding(.all,15)
                 .background(Rectangle().fill(Color.green).shadow(radius: 3))
                 .padding(.horizontal,10)
+                .frame( height: 200)
+                .onDisappear{
+                    showTipButton = true
+                }
+            }
+            
+            if showTipButton {
+                HStack{
+                    Button(action: {
+                        showTip = true
+                        showTipButton = false
+                    }) {
+                        Image(systemName: "info.circle")
+                    }.padding(.leading, 25)
+                    
+                    Spacer()
+                }
             }
         }
         .padding()
+        .animation(.default, value: showTip)
+        .font(.title)
     }
 }
 
